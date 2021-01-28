@@ -1,10 +1,10 @@
 Remote capture on Win10 PC
 --------------------------
 
-To create a wireless sniffer trace with a Win10 PC, one could use a suitable USB Wifi key. 
+To create a wireless sniffer trace with a Win10 PC, one could use a suitable USB Wi-Fi key. 
 As I did not have such an USB key, I tried another approach, using a Raspberry Pi.
 
-For this, I used a Raspberry Pi 3B+ which has it's own WiFi and Bluetooth radios.
+For this, I used a Raspberry Pi 3B+ which has it's own Wi-Fi and Bluetooth radios.
 
 From https://www.offensive-security.com/kali-linux-arm-images/ downloaded 
 **64-bit kali-linux-2020.4-rpi4-nexmon-64.img.xz** and installed this image
