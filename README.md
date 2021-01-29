@@ -12,7 +12,7 @@ on a 64 GB SDCard with Raspberry Pi Imager V1.5.
 
 ##### Use plink.exe, part of putty suite to start tcpdump on the Raspberry, and start Wireshark on the PC
 
-    plink.exe -ssh -batch -pw kali kali@192.168.178.25 "tcpdump -ni eth0 -s 0 -w - not port 22" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i -
+    plink.exe -ssh -batch -pw PASSWORD USER@IPADDRESS "tcpdump -ni eth0 -s 0 -w - not port 22" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i -
 
 This might show:
 
@@ -21,11 +21,11 @@ tcpdump: eth0: You don't have permission to capture on that device
 
 ##### To grant permission to capture on the Raspberry
 
-1. Add a capture group and add the user (in this case 'kali') to that group:
+1. Add a capture group and add the user (in this case 'USER') to that group:
    
     `sudo groupadd pcap`
    
-    `sudo usermod -a -G pcap kali`
+    `sudo usermod -a -G pcap USER`
 
 
 2. Next, change the group of tcpdump and set permissions:
@@ -39,21 +39,21 @@ tcpdump: eth0: You don't have permission to capture on that device
    
     `sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump`
 
-##### To stop sudo asking for a password for user kali
+##### To stop sudo asking for a password for user USER
 
-To prevent sudo asking for a password for user kali, I did edit the file /etc/sudoers.d/kali-grant-root so it has the following contents.
-(The line kali ALL=(ALL:ALL) NOPASSWD: ALL was added at the end of this file)
+To prevent sudo asking for a password for user USER I did edit the file /etc/sudoers.d/kali-grant-root so it has the following contents.
+(The line USER ALL=(ALL:ALL) NOPASSWD: ALL was added at the end of this file)
 
 	# Allow members of group kali-trusted to execute any command without a
 	# password prompt
 	%kali-trusted   ALL=(ALL:ALL) NOPASSWD: ALL
-	kali ALL=(ALL:ALL) NOPASSWD: ALL
+	USER ALL=(ALL:ALL) NOPASSWD: ALL
 
 ##### Functional commands to start the capture
 
-	plink.exe -batch -ssh -pw kali kali@192.168.178.25 "sudo airmon-ng check kill"
-	plink.exe -batch -ssh -pw kali kali@192.168.178.25 "sudo airmon-ng start wlan0"
-	plink.exe -batch -ssh -pw kali kali@192.168.178.25 "tcpdump -ni wlan0mon -s 0 -w - not port 22" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i -
+	plink.exe -batch -ssh -pw PASSWORD USER@IPADDRESS "sudo airmon-ng check kill"
+	plink.exe -batch -ssh -pw PASSWORD USER@IPADDRESS "sudo airmon-ng start wlan0"
+	plink.exe -batch -ssh -pw PASSWORD USER@IPADDRESS "tcpdump -ni wlan0mon -s 0 -w - not port 22" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i -
 
 #### Channel hopping
 
