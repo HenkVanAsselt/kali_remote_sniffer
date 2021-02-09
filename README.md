@@ -1,5 +1,5 @@
-Remote capture on Win10 PC
---------------------------
+Remote wireless capture on Win10 PC, using a Raspberry Pi
+---------------------------------------------------------
 
 To create a wireless sniffer trace with a Win10 PC, one could use a suitable USB Wi-Fi key. 
 As I did not have such an USB key, I tried another approach, using a Raspberry Pi.
@@ -9,6 +9,12 @@ For this, I used a Raspberry Pi 3B+ which has it's own Wi-Fi and Bluetooth radio
 From https://www.offensive-security.com/kali-linux-arm-images/ downloaded 
 **64-bit kali-linux-2020.4-rpi4-nexmon-64.img.xz** and installed this image
 on a 64 GB SDCard with Raspberry Pi Imager V1.5.
+
+It is wise to update this installation with the following commands, 
+but do this during the night, as it might take a few hours.
+
+    sudo apt update
+    sudo apt full-upgrade -y
 
 ##### Use plink.exe, part of putty suite to start tcpdump on the Raspberry, and start Wireshark on the PC
 
